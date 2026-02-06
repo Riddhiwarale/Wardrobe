@@ -27,6 +27,23 @@ export interface User {
   avatar?: string;
 }
 
+export interface Event {
+  id: string;
+  title: string;
+  date: string;
+  time?: string;
+  outfitPlanned: boolean;
+  outfitId?: string;
+}
+
+export interface Activity {
+  id: string;
+  type: 'added' | 'planned' | 'worn';
+  description: string;
+  timestamp: string;
+  itemId?: string;
+}
+
 // Color palette for items
 export const COLOR_OPTIONS = [
   { name: 'Black', value: '#1a1a1a' },
@@ -66,7 +83,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-06-15',
     wearCount: 24,
     lastWorn: '2025-02-03',
-    image: '',
+    image: '/top.png',
   },
   {
     id: '2',
@@ -77,7 +94,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-03-10',
     wearCount: 18,
     lastWorn: '2025-02-01',
-    image: '',
+    image: '/dress.jpg',
   },
   {
     id: '3',
@@ -88,7 +105,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-07-20',
     wearCount: 32,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/jeans.png',
   },
   {
     id: '4',
@@ -99,7 +116,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-10-05',
     wearCount: 15,
     lastWorn: '2025-02-02',
-    image: '',
+    image: '/dress.png',
   },
   {
     id: '5',
@@ -110,7 +127,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-04-12',
     wearCount: 45,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/shoes.png',
   },
   {
     id: '6',
@@ -121,7 +138,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-09-18',
     wearCount: 12,
     lastWorn: '2025-01-28',
-    image: '',
+    image: '/top2.png',
   },
   {
     id: '7',
@@ -132,7 +149,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-02-14',
     wearCount: 28,
     lastWorn: '2025-02-03',
-    image: '',
+    image: '/bag.png',
   },
   {
     id: '8',
@@ -143,7 +160,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-05-22',
     wearCount: 20,
     lastWorn: '2025-01-30',
-    image: '',
+    image: '/jeans.png',
   },
   {
     id: '9',
@@ -154,7 +171,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-11-08',
     wearCount: 22,
     lastWorn: '2025-02-01',
-    image: '',
+    image: '/shoes.png',
   },
   {
     id: '10',
@@ -165,7 +182,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-12-01',
     wearCount: 8,
     lastWorn: '2025-01-25',
-    image: '',
+    image: '/bag.png',
   },
   {
     id: '11',
@@ -176,7 +193,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-08-05',
     wearCount: 19,
     lastWorn: '2025-02-02',
-    image: '',
+    image: '/top.png',
   },
   {
     id: '12',
@@ -187,7 +204,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-07-10',
     wearCount: 26,
     lastWorn: '2025-02-03',
-    image: '',
+    image: '/jeans.png',
   },
   {
     id: '13',
@@ -198,7 +215,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-04-28',
     wearCount: 14,
     lastWorn: '2025-01-29',
-    image: '',
+    image: '/top2.png',
   },
   {
     id: '14',
@@ -209,7 +226,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-11-15',
     wearCount: 10,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/dress.jpg',
   },
   {
     id: '15',
@@ -220,7 +237,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-05-08',
     wearCount: 16,
     lastWorn: '2025-01-27',
-    image: '',
+    image: '/shoes.png',
   },
   {
     id: '16',
@@ -231,7 +248,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2023-12-25',
     wearCount: 120,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/bag.png',
   },
   {
     id: '17',
@@ -242,7 +259,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-06-20',
     wearCount: 6,
     lastWorn: '2025-01-15',
-    image: '',
+    image: '/top.png',
   },
   {
     id: '18',
@@ -253,7 +270,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-09-02',
     wearCount: 11,
     lastWorn: '2025-01-31',
-    image: '',
+    image: '/jeans.png',
   },
   {
     id: '19',
@@ -264,7 +281,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-10-20',
     wearCount: 9,
     lastWorn: '2025-02-01',
-    image: '',
+    image: '/top2.png',
   },
   {
     id: '20',
@@ -275,7 +292,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-08-15',
     wearCount: 35,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/shoes.png',
   },
   {
     id: '21',
@@ -286,7 +303,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-01-10',
     wearCount: 85,
     lastWorn: '2025-02-04',
-    image: '',
+    image: '/bag.png',
   },
   {
     id: '22',
@@ -297,7 +314,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-03-25',
     wearCount: 8,
     lastWorn: '2025-01-20',
-    image: '',
+    image: '/dress.png',
   },
   {
     id: '23',
@@ -308,7 +325,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-02-28',
     wearCount: 12,
     lastWorn: '2025-01-22',
-    image: '',
+    image: '/top.png',
   },
   {
     id: '24',
@@ -319,7 +336,7 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-04-15',
     wearCount: 10,
     lastWorn: '2025-01-21',
-    image: '',
+    image: '/jeans.png',
   },
   {
     id: '25',
@@ -330,12 +347,26 @@ export const mockItems: WardrobeItem[] = [
     purchaseDate: '2024-06-01',
     wearCount: 40,
     lastWorn: '2025-02-03',
-    image: '',
+    image: '/bag.png',
   },
 ];
 
 // Mock planned outfits
 export const mockOutfits: PlannedOutfit[] = [
+  // 2026 - Current test data
+  {
+    id: 'o101',
+    date: '2026-02-06',
+    items: ['1', '3', '5', '7'],
+    title: 'Smart Casual',
+  },
+  {
+    id: 'o102',
+    date: '2026-02-07',
+    items: ['6', '12', '9', '16'],
+    title: 'Coffee Date',
+  },
+  // 2025 - Old data
   {
     id: 'o1',
     date: '2025-02-05',
@@ -392,6 +423,110 @@ export const mockUser: User = {
   name: 'Sarah',
   email: 'sarah@example.com',
 };
+
+// Mock events
+export const mockEvents: Event[] = [
+  // 2026 - Current test data
+  {
+    id: 'e101',
+    title: 'Team Standup',
+    date: '2026-02-06',
+    time: '9:00 AM',
+    outfitPlanned: true,
+    outfitId: 'o101',
+  },
+  {
+    id: 'e102',
+    title: 'Lunch Meeting',
+    date: '2026-02-06',
+    time: '12:30 PM',
+    outfitPlanned: false,
+  },
+  {
+    id: 'e103',
+    title: 'Coffee with Sarah',
+    date: '2026-02-07',
+    time: '3:00 PM',
+    outfitPlanned: true,
+    outfitId: 'o102',
+  },
+  // 2025 - Old data
+  {
+    id: 'e1',
+    title: 'Client Meeting',
+    date: '2025-02-06',
+    time: '2:00 PM',
+    outfitPlanned: true,
+    outfitId: 'o2',
+  },
+  {
+    id: 'e2',
+    title: 'Dinner with Friends',
+    date: '2025-02-08',
+    time: '7:00 PM',
+    outfitPlanned: true,
+    outfitId: 'o3',
+  },
+  {
+    id: 'e3',
+    title: 'Job Interview',
+    date: '2025-02-10',
+    time: '10:00 AM',
+    outfitPlanned: false,
+  },
+  {
+    id: 'e4',
+    title: "Valentine's Date",
+    date: '2025-02-14',
+    time: '6:30 PM',
+    outfitPlanned: true,
+    outfitId: 'o6',
+  },
+  {
+    id: 'e5',
+    title: 'Networking Event',
+    date: '2025-02-18',
+    time: '5:00 PM',
+    outfitPlanned: false,
+  },
+];
+
+// Mock activities
+export const mockActivities: Activity[] = [
+  {
+    id: 'a1',
+    type: 'added',
+    description: 'Added Black Puffer Jacket to wardrobe',
+    timestamp: '2025-02-04T14:30:00',
+    itemId: '14',
+  },
+  {
+    id: 'a2',
+    type: 'planned',
+    description: 'Planned outfit for Business Meeting',
+    timestamp: '2025-02-04T10:15:00',
+  },
+  {
+    id: 'a3',
+    type: 'worn',
+    description: 'Wore Black Slim Jeans',
+    timestamp: '2025-02-04T08:00:00',
+    itemId: '3',
+  },
+  {
+    id: 'a4',
+    type: 'added',
+    description: 'Added Cream Turtleneck to wardrobe',
+    timestamp: '2025-02-03T16:45:00',
+    itemId: '19',
+  },
+  {
+    id: 'a5',
+    type: 'planned',
+    description: 'Planned outfit for Weekend Brunch',
+    timestamp: '2025-02-03T11:20:00',
+  },
+];
 
 // Dashboard stats
 export const getDashboardStats = () => {

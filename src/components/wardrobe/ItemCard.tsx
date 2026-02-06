@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { WardrobeItem } from '@/data/mockData';
 
 interface ItemCardProps {
@@ -10,7 +11,7 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ item, onClick, index }: ItemCardProps) {
-  // Generate a gradient based on item colors
+  // Generate a gradient fallback based on item colors
   const bgGradient = item.colors.length > 1
     ? `linear-gradient(135deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`
     : item.colors[0];
@@ -23,11 +24,20 @@ export function ItemCard({ item, onClick, index }: ItemCardProps) {
       onClick={onClick}
       className="item-card w-full text-left cursor-pointer group"
     >
-      {/* Image/Color placeholder */}
-      <div
-        className="aspect-square w-full relative overflow-hidden"
-        style={{ background: bgGradient }}
-      >
+      {/* Item Image */}
+      <div className="aspect-square w-full relative overflow-hidden bg-muted">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+          />
+        ) : (
+          <div style={{ background: bgGradient }} className="w-full h-full" />
+        )}
+
         {/* Overlay for hover effect */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
 
@@ -43,22 +53,9 @@ export function ItemCard({ item, onClick, index }: ItemCardProps) {
           {item.name}
         </h3>
 
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">
-            Worn {item.wearCount} times
-          </span>
-
-          {/* Color dots */}
-          <div className="flex -space-x-1">
-            {item.colors.slice(0, 3).map((color, i) => (
-              <div
-                key={i}
-                className="color-swatch-sm"
-                style={{ backgroundColor: color }}
-              />
-            ))}
-          </div>
-        </div>
+        <span className="text-xs text-muted-foreground">
+          Worn {item.wearCount} times
+        </span>
       </div>
     </motion.button>
   );
