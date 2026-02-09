@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Package, TrendingUp, Plus, CalendarDays, CalendarPlus, Shirt, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
+import Image from 'next/image';
+import { Package, TrendingUp, Plus, CalendarDays, CalendarPlus, Shirt, CheckCircle2, AlertCircle, Clock, Calendar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,10 @@ export default function Dashboard() {
   // Find today's outfit
   const todaysOutfit = mockOutfits.find(o => o.date === todayStr);
   const todaysOutfitItems = todaysOutfit ? mockItems.filter(item => todaysOutfit.items.includes(item.id)) : [];
+
+  // Find today's events
+  const todaysEvents = mockEvents.filter(e => e.date === todayStr);
+  const todaysEventsWithOutfits = todaysEvents.filter(e => e.outfitPlanned).length;
 
   // Stats
   const totalItems = mockItems.length;
@@ -103,10 +108,22 @@ export default function Dashboard() {
                   : item.colors[0];
                 return (
                   <div key={item.id} className="flex-shrink-0 w-20">
-                    <div
-                      className="aspect-square rounded-xl mb-2"
-                      style={{ background: bgGradient }}
-                    />
+                    <div className="aspect-square rounded-xl mb-2 relative overflow-hidden bg-muted">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
+                      ) : (
+                        <div
+                          className="w-full h-full"
+                          style={{ background: bgGradient }}
+                        />
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground truncate">{item.name}</p>
                   </div>
                 );
@@ -128,6 +145,76 @@ export default function Dashboard() {
               className="rounded-xl"
             >
               Plan Outfit
+            </Button>
+          </motion.div>
+        )}
+
+        {/* Today's Events */}
+        {todaysEvents.length > 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="card-elevated p-4 md:p-5 mb-6"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-display text-lg font-semibold text-foreground flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
+                Today&apos;s Events
+              </h2>
+              <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent font-medium">
+                {todaysEventsWithOutfits}/{todaysEvents.length} planned
+              </span>
+            </div>
+            <div className="space-y-2">
+              {todaysEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15 + index * 0.05 }}
+                  className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer"
+                  onClick={() => router.push('/calendar')}
+                >
+                  <div className="flex-1">
+                    <p className="font-medium text-foreground text-sm">{event.title}</p>
+                    {event.time && (
+                      <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {event.time}
+                      </p>
+                    )}
+                  </div>
+                  {event.outfitPlanned ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-primary hidden sm:inline">Outfit Ready</span>
+                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground hidden sm:inline">No Outfit</span>
+                      <AlertCircle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="card-elevated p-6 mb-6 text-center"
+          >
+            <Calendar className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
+            <p className="text-muted-foreground mb-3">No events scheduled for today</p>
+            <Button
+              onClick={() => router.push('/calendar')}
+              size="sm"
+              className="rounded-xl"
+            >
+              Add Event
             </Button>
           </motion.div>
         )}

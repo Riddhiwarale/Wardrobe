@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="hsl(350, 65%, 65%)"/>
+
+  <!-- Hanger hook -->
+  <path d="M32 12 C28 12, 26 14, 26 17 C26 20, 28 22, 32 22"
+        stroke="white"
+        stroke-width="3"
+        stroke-linecap="round"
+        fill="none"/>
+
+  <!-- Hanger bar -->
+  <line x1="18" y1="32" x2="46" y2="32"
+        stroke="white"
+        stroke-width="3"
+        stroke-linecap="round"/>
+
+  <!-- Hanger arms -->
+  <line x1="32" y1="22" x2="18" y2="32"
+        stroke="white"
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <line x1="32" y1="22" x2="46" y2="32"
+        stroke="white"
+        stroke-width="3"
+        stroke-linecap="round"/>
+
+  <!-- Hanger ends (small circles) -->
+  <circle cx="18" cy="32" r="2.5" fill="white"/>
+  <circle cx="46" cy="32" r="2.5" fill="white"/>
+
+  <!-- Decorative clothing shape -->
+  <path d="M22 32 L22 46 C22 48, 24 50, 26 50 L38 50 C40 50, 42 48, 42 46 L42 32"
+        stroke="white"
+        stroke-width="2.5"
+        fill="hsl(220, 15%, 95%)"
+        opacity="0.9"/>
+</svg>

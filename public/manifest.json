@@ -1,0 +1,16 @@
+{
+  "name": "Wardrobe App",
+  "short_name": "Wardrobe",
+  "description": "Organize and plan your wardrobe with style",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "hsl(350, 65%, 65%)",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
