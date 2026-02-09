@@ -40,11 +40,6 @@ export function ItemCard({ item, onClick, index }: ItemCardProps) {
 
         {/* Overlay for hover effect */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
-
-        {/* Category badge */}
-        <span className="absolute top-2 right-2 px-2 py-1 text-xs font-medium bg-card/90 backdrop-blur-sm rounded-full text-foreground capitalize">
-          {item.category}
-        </span>
       </div>
 
       {/* Content */}
