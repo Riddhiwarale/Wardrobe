@@ -402,6 +402,12 @@ export const mockOutfits: PlannedOutfit[] = [
     items: ['1', '8', '5', '21'],
     title: 'Work from Home Casual',
   },
+  {
+    id: 'o109',
+    date: '2026-02-10',
+    items: ['6', '3', '5', '20'],
+    title: 'Casual Monday',
+  },
   // 2025 - Old data
   {
     id: 'o1',
@@ -576,6 +582,21 @@ export const mockEvents: Event[] = [
     time: '6:00 PM',
     outfitPlanned: false,
   },
+  {
+    id: 'e116',
+    title: 'Monday Morning Standup',
+    date: '2026-02-10',
+    time: '9:00 AM',
+    outfitPlanned: true,
+    outfitId: 'o109',
+  },
+  {
+    id: 'e117',
+    title: 'Coffee with Sarah',
+    date: '2026-02-10',
+    time: '3:00 PM',
+    outfitPlanned: false,
+  },
   // 2025 - Old data
   {
     id: 'e1',
@@ -619,6 +640,67 @@ export const mockEvents: Event[] = [
 
 // Mock activities
 export const mockActivities: Activity[] = [
+  // 2026 - Recent activities
+  {
+    id: 'a20',
+    type: 'planned',
+    description: 'Planned outfit for Monday Morning Standup',
+    timestamp: '2026-02-10T07:00:00',
+  },
+  {
+    id: 'a11',
+    type: 'planned',
+    description: 'Planned outfit for Team Meeting today',
+    timestamp: '2026-02-09T07:30:00',
+  },
+  {
+    id: 'a12',
+    type: 'added',
+    description: 'Added Leather Messenger Bag to wardrobe',
+    timestamp: '2026-02-08T18:45:00',
+    itemId: '21',
+  },
+  {
+    id: 'a13',
+    type: 'planned',
+    description: 'Planned outfit for Valentine\'s Dinner',
+    timestamp: '2026-02-08T14:20:00',
+  },
+  {
+    id: 'a14',
+    type: 'worn',
+    description: 'Wore Navy Crew Sweater',
+    timestamp: '2026-02-07T09:00:00',
+    itemId: '6',
+  },
+  {
+    id: 'a15',
+    type: 'added',
+    description: 'Added White Leather Sneakers to wardrobe',
+    timestamp: '2026-02-07T16:15:00',
+    itemId: '5',
+  },
+  {
+    id: 'a16',
+    type: 'planned',
+    description: 'Planned outfit for Coffee Date',
+    timestamp: '2026-02-06T20:30:00',
+  },
+  {
+    id: 'a17',
+    type: 'worn',
+    description: 'Wore Classic White T-Shirt',
+    timestamp: '2026-02-06T08:45:00',
+    itemId: '1',
+  },
+  {
+    id: 'a18',
+    type: 'added',
+    description: 'Added Black Chelsea Boots to wardrobe',
+    timestamp: '2026-02-05T19:20:00',
+    itemId: '9',
+  },
+  // 2025 - Old activities
   {
     id: 'a1',
     type: 'added',
